@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{include/Common.html :: head}"></head>
+<body>
+<head th:replace="~{include/Common.html :: header}"></head>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="~{include/NavBar.html :: navbar}"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div th:replace="~{include/Common.html :: title}"></div>
+
+            <div class="container-fluid">
+                <div class="row mb-3">
+                    <div class="col"></div>
+                    <div class="col text-center">
+                        <img class="bd-placeholder-img rounded-circle" width="140" height="140"
+                             src="/images/nmap.jpg">
+                        <h2 class="fw-normal">Nmap</h2>
+                        <p>네트워크 탐색 및 보안 감사에 사용되는 오픈 소스 도구로, 네트워크의 호스트 탐지, 서비스 및 운영 체제 감지 등에 사용합니다.</p>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col"></div>
+                    <div class="col-6 text-center">
+                        <div class="row mb-3">
+                            <div class="col"></div>
+                            <div class="mb-3">
+                                <input class="form-check-input" type="radio" name="option"
+                                       id="allbtn" value="ALL" checked> <label
+                                    class="form-check-label text-body" for="allbtn">전체스캔</label> <input
+                                    class="form-check-input" type="radio" name="option" id="portbtn"
+                                    value="SET"> <label class="form-check-label"
+                                                         for="portbtn">포트지정</label>
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row mb-5 alldiv">
+                            <div class="col"></div>
+                            <div class="col-10">
+                                <label class="form-label">IP</label> <input
+                                    type="text" class="form-control" placeholder="127.0.0.1" id="aip">
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row mb-5 portdiv" style="display: none">
+                            <div class="col"></div>
+                            <div class="col-10">
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="form-label">IP</label> <input
+                                            type="text" class="form-control" placeholder="127.0.0.1"
+                                            id="pip">
+                                    </div>
+                                    <div class="col-3">
+                                        <label class="form-label">PORT</label> <input
+                                            type="text" class="form-control" placeholder="8080" id="port">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button id="scanbtn" class="btn btn-outline-success" type="button"
+                                    onclick="nmap();">Start
+                            </button>
+                            <button id="loadingbtn"
+                                    class="btn btn-outline-success" type="button" style="display: none" disabled>
+					<span class="spinner-border spinner-border-sm" role="status"
+                          aria-hidden="true"></span> 진행중...
+                            </button>
+                            <button id="successbtn"
+                                    class="btn btn-outline-success" type="button" style="display: none" disabled>완료!
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row mb-5" id="rsdiv" style="display: none">
+                    <div class="col"></div>
+                    <div class="col-4">
+                        <div class="row mb-1">
+                            <div class="col text-center">
+                                <label class="col-form-label col-form-label-sm float-start"
+                                       id="rsipdiv">IP</label>
+                            </div>
+                            <div class="col">
+                                <label class="col-form-label col-form-label-sm float-end"
+                                       id="rstimediv">Time</label>
+                            </div>
+                        </div>
+                        <table class="table text-center">
+                            <thead>
+                            <tr>
+                                <td>번호</td>
+                                <td>포트</td>
+                                <td>상태</td>
+                                <td>서비스명</td>
+                            </tr>
+                            </thead>
+                            <tbody id="rstbl">
+                            </tbody>
+                        </table>
+                        <div class="row mb-1">
+                            <div class="col">
+                            </div>
+                            <div class="col">
+                                <a class="col-form-label col-form-label-sm float-end"
+                                       id="rslogdiv"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+</body>
+<footer th:replace="~{include/Common.html :: footer}"></footer>
+<script>
+    $('#allbtn')
+        .click(
+            function () {
+                $('.portdiv').css("display", "none");
+                $('.alldiv').css("display", "flex");
+            });
+
+    $('#portbtn').click(function () {
+        $('.alldiv').css("display", "none");
+        $('.portdiv').css("display", "flex");
+    });
+</script>
+</html>

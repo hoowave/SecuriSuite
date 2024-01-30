@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{include/Common.html :: head}"></head>
+<body>
+<head th:replace="~{include/Common.html :: header}"></head>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="~{include/NavBar.html :: navbar}"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div th:replace="~{include/Common.html :: title}"></div>
+
+            <div class="container-fluid">
+                <div class="row mb-3">
+                    <div class="col"></div>
+                    <div class="col text-center">
+                        <img class="bd-placeholder-img rounded-circle" width="140" height="140"
+                             src="/images/crunch.jpg">
+                        <h2 class="fw-normal">Crunch</h2>
+                        <p>패스워드 생성 및 관리에 사용되는 도구로, 맞춤형 단어 목록을 생성하는 데 사용합니다.</p>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row mb-5">
+                    <div class="col"></div>
+                    <div class="col text-center">
+                        <div class="row mb-3">
+                            <div class="col"></div>
+                            <div class="col-md-4">
+                                <label class="form-label">최소 자리 수</label> <input
+                                    type="text" class="form-control" placeholder="1~8" id="minWord">
+                            </div>
+                            <div class="col"></div>
+                            <div class="col-md-4">
+                                <label class="form-label">최대 자리 수</label> <input
+                                    type="text" class="form-control" placeholder="1~8" id="maxWord">
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col"></div>
+                            <div class="col-10">
+                                <label class="form-label">문자</label> <input
+                                    type="text" class="form-control"
+                                    placeholder="0123456789abcdefghijklmnopqrstuvwxyz" id="words">
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button id="crunchbtn" class="btn btn-outline-success" type="button"
+                                    onclick="crunch();">Start
+                            </button>
+                            <button id="loadingbtn"
+                                    class="btn btn-outline-success" type="button" style="display: none" disabled>
+					<span class="spinner-border spinner-border-sm" role="status"
+                          aria-hidden="true"></span> 진행중...
+                            </button>
+                            <button id="loadbtn" type="button" class="btn btn-outline-success" style="display: none" onclick="crunchload();">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
+                                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
+                                </svg>
+                                새로고침
+                            </button>
+                            <button id="terminatebtn" type="button" class="btn btn-outline-danger" style="display: none"
+                                    onclick="terminate('crunch');">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                          d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
+                                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
+                                </svg>
+                                작업종료
+                            </button>
+                            <a id="downloadbtn"
+                               class="btn btn-outline-success" type="button" style="display: none">Download
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+</body>
+<footer th:replace="~{include/Common.html :: footer}"></footer>
+</html>

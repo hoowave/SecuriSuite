@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Building Back-End Server
+echo "* * * * * Welcome SecuriSuite * * * * *"
+echo "* * * * * (1/3) Building Back-End Server * * * * *"
+cd BackEnd
+./gradlew build
+cd ..
+
+# Building Front-End Server
+echo "* * * * * (2/3) Building Front-End Server * * * * *"
+cd FrontEnd
+./gradlew build
+cd ..
+
+echo "* * * * * Done ! Enjoy * * * * *"
+
+# Starting Back-End Server
+echo "* * * * * Starting SecuriSuite Server * * * * *"
+cd BackEnd
+java -jar ./build/libs/BackEnd-0.0.1-SNAPSHOT.jar &
+cd ..
+
+# Starting Front-End server
+cd FrontEnd
+java -jar ./build/libs/FrontEnd-0.0.1-SNAPSHOT.jar &
+cd ..

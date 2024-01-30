@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Stopping Back-End Server
+echo "* * * * * (1/2) Stopping Back-End Server * * * * *"
+pkill -f 'java -jar ./BackEnd/build/libs/BackEnd-0.0.1-SNAPSHOT.jar'
+
+pkill -9 java
+
+# Stopping Front-End Server
+echo "* * * * * (2/2) Stopping Front-End Server * * * * *"
+pkill -f 'java -jar ./FrontEnd/build/libs/FrontEnd-0.0.1-SNAPSHOT.jar'
+
+echo "* * * * * Done ! Bye * * * * *"

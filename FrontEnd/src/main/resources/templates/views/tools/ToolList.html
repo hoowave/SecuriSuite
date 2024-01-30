@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{include/Common.html :: head}"></head>
+<body>
+<head th:replace="~{include/Common.html :: header}"></head>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="~{include/NavBar.html :: navbar}"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div th:replace="~{include/Common.html :: title}"></div>
+            <div class="row mb-3 text-center justify-content-evenly">
+                <div class="col-lg-4">
+                    <img class="bd-placeholder-img rounded-circle" width="140" height="140"
+                         src="/images/nmap.jpg">
+                    <h2 class="fw-normal">Nmap</h2>
+                    <p>네트워크 탐색 및 보안 감사에 사용되는 오픈 소스 도구로, 네트워크의 호스트 탐지, 서비스 및 운영 체제 감지 등에 사용합니다.</p>
+                    <p><a class="btn btn-outline-success" href="/tools/nmap">사용하기 &raquo;</a></p>
+                </div>
+                <div class="col-lg-4">
+                    <img class="bd-placeholder-img rounded-circle" width="140" height="140"
+                         src="/images/httrack.jpg">
+                    <h2 class="fw-normal">Httrack</h2>
+                    <p>웹사이트의 전체 복사본을 로컬로 다운로드하는데 사용될 오프라인 브라우저 유틸리티입니다.</p>
+                    <p><a class="btn btn-outline-success" href="/tools/httrack">사용하기 &raquo;</a></p>
+                </div>
+            </div>
+            <div class="row mb-3 text-center justify-content-evenly">
+                <div class="col-lg-4">
+                    <img class="bd-placeholder-img rounded-circle" width="140" height="140"
+                         src="/images/crunch.jpg">
+                    <h2 class="fw-normal">Crunch</h2>
+                    <p>패스워드 생성 및 관리에 사용되는 도구로, 맞춤형 단어 목록을 생성하는 데 사용합니다.</p>
+                    <p><a class="btn btn-outline-success" href="/tools/crunch">사용하기 &raquo;</a></p>
+                </div>
+                <div class="col-lg-4">
+                    <img class="bd-placeholder-img rounded-circle" width="140" height="140"
+                         src="/images/john.jpg">
+                    <h2 class="fw-normal">JohnTheRipper</h2>
+                    <p>암호의 강도를 테스트하고 복구하는데 사용될 패스워드 크래킹 도구입니다.</p>
+                    <p><a class="btn btn-outline-success" href="/tools/john">사용하기 &raquo;</a></p>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+<footer th:replace="~{include/Common.html :: footer}"></footer>
+</html>

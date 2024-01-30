@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{include/Common.html :: head}"></head>
+<body>
+<head th:replace="~{include/Common.html :: header}"></head>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="~{include/NavBar.html :: navbar}"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div th:replace="~{include/Common.html :: title}"></div>
+
+            <div class="container-fluid">
+                <div class="row mb-3">
+                    <div class="col"></div>
+                    <div class="col text-center">
+                        <img class="bd-placeholder-img rounded-circle" width="140" height="140"
+                             src="/images/john.jpg">
+                        <h2 class="fw-normal">JohnTheRipper</h2>
+                        <p>암호의 강도를 테스트하고 복구하는데 사용될 패스워드 크래킹 도구입니다.</p>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row mb-3">
+                    <div class="col"></div>
+                    <div class="col text-center">
+                        <div class="mb-3">
+                            <input class="form-check-input" type="radio" name="option"
+                                   id="default" value="DEFAULT" checked> <label
+                                class="form-check-label text-body" for="default">Default</label> <input
+                                class="form-check-input" type="radio" name="option" id="custom"
+                                value="CUSTOM"> <label class="form-check-label"
+                                                       for="custom">Custom</label> <a class="option_tooltip"
+                                                                                      data-toggle="tooltip"
+                                                                                      data-bs-placement="right"
+                                                                                      title="기본적으로 추측하여 암호를 찾아내지만, 사전파일을 통해 암호를 찾아낼수도 있습니다.">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path
+                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path
+                                        d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                            </svg>
+                        </a>
+                        </div>
+                        <div class="mb-5 option_default file_tooltip" data-toggle="tooltip"
+                             data-bs-placement="right"
+                             title="허용하는 확장자<br>.zip .rar .7z<br>.doc .docx .xls .xlsx .ppt .pptx">
+                            <label for="targetFile" class="form-label">압축파일 선택</label> <input
+                                class="form-control" type="file" id="targetFile">
+                        </div>
+                        <div class="row mb-5 option_custom" style="display: none">
+                            <div class="col file_tooltip" data-toggle="tooltip"
+                                 data-bs-placement="right"
+                                 title="허용하는 확장자<br>.zip .rar .7z<br>.doc .docx .xls .xlsx .ppt .pptx">
+                                <label for="customFile" class="form-label">압축파일 선택</label> <input
+                                    class="form-control" type="file" id="customFile">
+                            </div>
+                            <div class="col dictionary_tooltip" data-toggle="tooltip"
+                                 data-bs-placement="right" title="허용하는 확장자<br>.txt">
+                                <label for="customList" class="form-label">사전파일 선택</label> <input
+                                    class="form-control " type="file" id="customList">
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button id="johnbtn" class="btn btn-outline-success"
+                                    type="button" onclick="john();">Start
+                            </button>
+                            <button id="loadingbtn"
+                                    class="btn btn-outline-success" type="button" style="display: none" disabled>
+					<span class="spinner-border spinner-border-sm" role="status"
+                          aria-hidden="true"></span> 진행중...
+                            </button>
+                            <button id="loadbtn" type="button" class="btn btn-outline-success" style="display: none"
+                                    onclick="johnload();">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                          d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
+                                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
+                                </svg>
+                                새로고침
+                            </button>
+                            <button id="terminatebtn" type="button" class="btn btn-outline-danger" style="display: none"
+                                    onclick="terminate('john');">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                          d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
+                                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
+                                </svg>
+                                작업종료
+                            </button>
+                            <button id="successbtn"
+                                    class="btn btn-outline-success" type="button" style="display: none" disabled>완료!
+                            </button>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col">
+                            </div>
+                            <div class="col">
+                                <a class="col-form-label col-form-label-sm float-end"
+                                   id="rshashdiv"></a>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col">
+                            </div>
+                            <div class="col">
+                                <a class="col-form-label col-form-label-sm float-end"
+                                   id="rslogdiv"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row mb-5 text-center">
+                    <div class="col"></div>
+                    <div class="col" id="rspwdiv" style="display: none">
+                        <p>
+                            해당 파일의 비밀번호는 "<span class="fw-bold" id="rspwtext"></span>" 입니다.
+                        </p>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+</body>
+<footer th:replace="~{include/Common.html :: footer}"></footer>
+
+<script>
+    $(function () {
+        $('.option_tooltip').tooltip({
+            animation: true,
+            container: false,
+            html: true,
+            selector: false,
+            trigger: 'hover focus',
+        });
+
+        $('.file_tooltip').tooltip({
+            animation: true,
+            container: false,
+            html: true,
+            selector: false,
+            trigger: 'hover focus',
+        });
+
+        $('.dictionary_tooltip').tooltip({
+            animation: true,
+            container: false,
+            html: true,
+            selector: false,
+            trigger: 'hover focus',
+        });
+
+        $('#default').click(function () {
+            $('.option_custom').css("display", "none");
+            $('.option_default').css("display", "block");
+        });
+
+        $('#custom').click(function () {
+            $('.option_default').css("display", "none");
+            $('.option_custom').css("display", "flex");
+        });
+    });
+</script>
+</html>

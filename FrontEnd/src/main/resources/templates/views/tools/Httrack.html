@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{include/Common.html :: head}"></head>
+<body>
+<head th:replace="~{include/Common.html :: header}"></head>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="~{include/NavBar.html :: navbar}"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div th:replace="~{include/Common.html :: title}"></div>
+
+            <div class="container-fluid">
+                <div class="row mb-3">
+                    <div class="col"></div>
+                    <div class="col text-center">
+                        <img class="bd-placeholder-img rounded-circle" width="140" height="140"
+                             src="/images/httrack.jpg">
+                        <h2 class="fw-normal">Httrack</h2>
+                        <p>웹사이트의 전체 복사본을 로컬로 다운로드하는데 사용될 오프라인 브라우저 유틸리티입니다.</p>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col"></div>
+                    <div class="col text-center">
+                        <div class="mb-3">
+                            <input class="form-check-input" type="radio" name="type"
+                                   id="httrack" value="httrack" checked> <label
+                                class="form-check-label text-body" for="httrack">Httrack</label>
+                            <a class="httrack_tooltip" data-toggle="tooltip" data-bs-placement="right"
+                               title="웹사이트를 재귀적으로 다운로드하여 오프라인 브라우징을 위한 완전한 사이트 복사본을 만드는 도구입니다.">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                     fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path
+                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path
+                                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                </svg>
+                            </a>
+
+                            <input class="form-check-input" type="radio" name="type"
+                                   id="wget" value="wget"> <label class="form-check-label"
+                                                                  for="wget">Wget</label>
+                            <a class="wget_tooltip" data-toggle="tooltip" data-bs-placement="right"
+                               title="다양한 프로토콜을 지원하면서 파일 또는 웹사이트 콘텐츠를 다운로드하는 데 사용되는 명령줄 유틸리티입니다.">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                     fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path
+                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path
+                                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="mb-5">
+                            <label class="form-label">URL</label>
+                            <input type="text" class="form-control" placeholder="www.mysite.com"
+                                   id="url">
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button id="httrackbtn" class="btn btn-outline-success" type="button"
+                                    onclick="httrack();">Start
+                            </button>
+                            <button id="loadingbtn"
+                                    class="btn btn-outline-success" type="button" style="display: none" disabled>
+					<span class="spinner-border spinner-border-sm" role="status"
+                          aria-hidden="true"></span> 진행중...
+                            </button>
+                            <button id="loadbtn" type="button" class="btn btn-outline-success" style="display: none" onclick="httrackload();">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
+                                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
+                                </svg>
+                                새로고침
+                            </button>
+                            <button id="terminatebtn" type="button" class="btn btn-outline-danger" style="display: none"
+                                    onclick="terminate('httrack');">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                          d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
+                                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
+                                </svg>
+                                작업종료
+                            </button>
+                            <a id="downloadbtn"
+                               class="btn btn-outline-success" type="button" style="display: none">Download
+                            </a>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col">
+                            </div>
+                            <div class="col">
+                                <a class="col-form-label col-form-label-sm float-end"
+                                   id="rslogdiv"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="infodiv" style="display: none">
+                            <label class="col-form-label col-form-label-sm">- 웹 상의 데이터를
+                                수집하고 분석하기 위해 사용됩니다.</label> <label class="col-form-label col-form-label-sm">-
+                            웹 자동화된 방식으로 웹 페이지를 탐색하고, 필요한 정보를 추출하여 파일로 저장합니다.</label> <label
+                                class="col-form-label col-form-label-sm">- 웹 사이트의 정보를 주기적으로
+                            갱신하거나, 특정 데이터를 추출하기 위해 사용됩니다.</label> <label
+                                class="col-form-label col-form-label-sm">- 검색 엔진, 가격 비교
+                            사이트, 뉴스 수집 등 다양한 분야에서 활용됩니다.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+</body>
+<footer th:replace="~{include/Common.html :: footer}"></footer>
+<script>
+    $(function () {
+        $('.httrack_tooltip').tooltip({
+            animation: true,
+            container: false,
+            html: true,
+            selector: false,
+            trigger: 'hover focus',
+        });
+        $('.wget_tooltip').tooltip({
+            animation: true,
+            container: false,
+            html: true,
+            selector: false,
+            trigger: 'hover focus',
+        });
+    });
+</script>
+</html>
