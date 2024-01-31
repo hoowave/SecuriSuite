@@ -1,24 +1,30 @@
-package com.securisuite.frontend.controller;
+package com.securisuite.frontend.web;
 
-import com.securisuite.frontend.config.PathConfiguration;
+import com.securisuite.frontend.config.PathConfig;
 import com.securisuite.frontend.config.ViewConfig;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Slf4j
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/")
 public class WebController {
+    private final WebFacade webFacade;
 
     @GetMapping("/")
     public String dashBoard(Model model) {
         var viewConfig = ViewConfig.builder()
                 .title("대시보드")
                 .currentTab("Dashboard")
+                .data(webFacade.getDashBoard())
                 .build();
         model.addAttribute("viewConfig", viewConfig);
-        return PathConfiguration.VIEWS_PATH + "DashBoard";
+        return PathConfig.VIEWS_PATH + "DashBoard";
     }
 
     @GetMapping("/tools")
@@ -28,7 +34,7 @@ public class WebController {
                 .currentTab("Tool List")
                 .build();
         model.addAttribute("viewConfig", viewConfig);
-        return PathConfiguration.TOOLS_PATH + "ToolList";
+        return PathConfig.TOOLS_PATH + "ToolList";
     }
 
     @GetMapping("/tools/nmap")
@@ -38,7 +44,7 @@ public class WebController {
                 .currentTab("Tool List")
                 .build();
         model.addAttribute("viewConfig", viewConfig);
-        return PathConfiguration.TOOLS_PATH + "Nmap";
+        return PathConfig.TOOLS_PATH + "Nmap";
     }
 
     @GetMapping("/tools/httrack")
@@ -48,7 +54,7 @@ public class WebController {
                 .currentTab("Tool List")
                 .build();
         model.addAttribute("viewConfig", viewConfig);
-        return PathConfiguration.TOOLS_PATH + "Httrack";
+        return PathConfig.TOOLS_PATH + "Httrack";
     }
 
     @GetMapping("/tools/crunch")
@@ -58,7 +64,7 @@ public class WebController {
                 .currentTab("Tool List")
                 .build();
         model.addAttribute("viewConfig", viewConfig);
-        return PathConfiguration.TOOLS_PATH + "Crunch";
+        return PathConfig.TOOLS_PATH + "Crunch";
     }
 
     @GetMapping("/tools/john")
@@ -68,7 +74,7 @@ public class WebController {
                 .currentTab("Tool List")
                 .build();
         model.addAttribute("viewConfig", viewConfig);
-        return PathConfiguration.TOOLS_PATH + "JohnTheRipper";
+        return PathConfig.TOOLS_PATH + "JohnTheRipper";
     }
 
     @GetMapping("/system")
@@ -78,7 +84,7 @@ public class WebController {
                 .currentTab("System")
                 .build();
         model.addAttribute("viewConfig", viewConfig);
-        return PathConfiguration.VIEWS_PATH + "System";
+        return PathConfig.VIEWS_PATH + "System";
     }
 
     @GetMapping("/files")
@@ -88,7 +94,7 @@ public class WebController {
                 .currentTab("files")
                 .build();
         model.addAttribute("viewConfig", viewConfig);
-        return PathConfiguration.VIEWS_PATH + "LogList";
+        return PathConfig.VIEWS_PATH + "LogList";
     }
 
     @GetMapping("/logs")
@@ -98,6 +104,6 @@ public class WebController {
                 .currentTab("logs")
                 .build();
         model.addAttribute("viewConfig", viewConfig);
-        return PathConfiguration.VIEWS_PATH + "FileList";
+        return PathConfig.VIEWS_PATH + "FileList";
     }
 }

@@ -1,6 +1,6 @@
 package com.securisuite.backend.common;
 
-import com.securisuite.backend.common.config.PathConfiguration;
+import com.securisuite.backend.common.config.PathConfig;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +10,10 @@ import java.io.File;
 public class DirectoryInitializer {
     @PostConstruct
     public void init() {
-        createDirectory(PathConfiguration.DOWNLOAD_PATH);
-        createDirectory(PathConfiguration.UPLOAD_PATH);
-        createDirectory(PathConfiguration.LOG_PATH);
-        createDirectory(PathConfiguration.FILE_PATH);
+        createDirectory(PathConfig.DOWNLOAD_PATH);
+        createDirectory(PathConfig.UPLOAD_PATH);
+        createDirectory(PathConfig.LOG_PATH);
+        createDirectory(PathConfig.FILE_PATH);
     }
 
     private void createDirectory(String path) {

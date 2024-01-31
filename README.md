@@ -41,8 +41,12 @@ SecuriSuite는 이러한 강력한 도구들을 더욱 접근하기 쉽고 사�
 ### 시작하기
 API는 예제를 통해 제공됩니다.</br>
 * [Architecture & API](BackEnd/src/main/java/com/securisuite/backend/README.md) - 데이터 처리 아키텍처 및 각 API에 대한 완성된 예시입니다. 이 예시는 실제 프로젝트에서 나온 것입니다.
+* [InterFace](FrontEnd/README.md) - 사용자가 직관적으로 보여질 인터페이스에 대한 문서입니다.
 
 ### [업데이트](UPDATE.md)
+* 2024-01-31
+1. 사용자 대시보드 강화
+
 * 2024-01-30
 1. MariaDB & JPA 리포지토리 연동작업
 2. UI(Interface) 제작 및 API 통신 작업

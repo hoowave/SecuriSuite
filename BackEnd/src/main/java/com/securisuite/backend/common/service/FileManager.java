@@ -1,6 +1,6 @@
 package com.securisuite.backend.common.service;
 
-import com.securisuite.backend.common.config.PathConfiguration;
+import com.securisuite.backend.common.config.PathConfig;
 import com.securisuite.backend.common.exception.BaseException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,9 +9,9 @@ import java.io.File;
 
 @Component
 public class FileManager {
-    private final String uploadPath = PathConfiguration.UPLOAD_PATH;
-    private final String logPath = PathConfiguration.LOG_PATH;
-    private final String filePath = PathConfiguration.FILE_PATH;
+    private final String uploadPath = PathConfig.UPLOAD_PATH;
+    private final String logPath = PathConfig.LOG_PATH;
+    private final String filePath = PathConfig.FILE_PATH;
 
     public boolean isFileExist(String fileName) {
         ProcessBuilder processBuilder = new ProcessBuilder();

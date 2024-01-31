@@ -1,6 +1,6 @@
 package com.securisuite.backend.common.service;
 
-import com.securisuite.backend.common.config.PathConfiguration;
+import com.securisuite.backend.common.config.PathConfig;
 import com.securisuite.backend.common.exception.BaseException;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +8,7 @@ import java.io.*;
 
 @Component
 public class ShellCommandExecutor {
-    private final String logPath = PathConfiguration.LOG_PATH;
+    private final String logPath = PathConfig.LOG_PATH;
     // 쉘 명령만 수행
     public boolean execute(String[] cmd) {
         try {

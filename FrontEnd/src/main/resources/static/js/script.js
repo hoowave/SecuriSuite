@@ -530,3 +530,13 @@ function system() {
         }
     });
 }
+
+function copy() {
+    var pageUrl = "https://github.com/hoowave/SecuriSuite";
+    var $temp = $("<textarea>");
+    $("body").append($temp);
+    $temp.val(pageUrl).select();
+    document.execCommand("copy");
+    $temp.remove();
+    alert("프로젝트 URL이 클립보드에 복사되었습니다.");
+}

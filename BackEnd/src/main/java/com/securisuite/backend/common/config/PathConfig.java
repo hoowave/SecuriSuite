@@ -3,7 +3,7 @@ package com.securisuite.backend.common.config;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PathConfiguration {
+public class PathConfig {
     public static final String ROOT_PATH = "/var/www/html/";
     public static final String DOWNLOAD_PATH = ROOT_PATH + "/download/";
     public static final String UPLOAD_PATH = ROOT_PATH + "/upload/";
