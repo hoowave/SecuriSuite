@@ -92,9 +92,10 @@ public class WebController {
         var viewConfig = ViewConfig.builder()
                 .title("파일목록")
                 .currentTab("files")
+                .data(webFacade.getFileList())
                 .build();
         model.addAttribute("viewConfig", viewConfig);
-        return PathConfig.VIEWS_PATH + "LogList";
+        return PathConfig.VIEWS_PATH + "FileList";
     }
 
     @GetMapping("/logs")
@@ -102,8 +103,9 @@ public class WebController {
         var viewConfig = ViewConfig.builder()
                 .title("로그목록")
                 .currentTab("logs")
+                .data(webFacade.getLogList())
                 .build();
         model.addAttribute("viewConfig", viewConfig);
-        return PathConfig.VIEWS_PATH + "FileList";
+        return PathConfig.VIEWS_PATH + "LogList";
     }
 }

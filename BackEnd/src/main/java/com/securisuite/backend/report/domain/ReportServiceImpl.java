@@ -1,16 +1,18 @@
 package com.securisuite.backend.report.domain;
 
+import com.securisuite.backend.crunch.domain.Crunch;
 import com.securisuite.backend.crunch.infrastructure.CrunchRepository;
+import com.securisuite.backend.httrack.domain.Httrack;
 import com.securisuite.backend.httrack.infrastructure.HttrackRepository;
 import com.securisuite.backend.johntheripper.infrastructure.JohnRepository;
 import com.securisuite.backend.nmap.infrastructure.NmapRepository;
-import com.securisuite.backend.report.domain.info.DashBoardInfo;
-import com.securisuite.backend.report.domain.info.FileListInfo;
-import com.securisuite.backend.report.domain.info.LogListInfo;
+import com.securisuite.backend.report.domain.info.*;
 import com.securisuite.backend.system.infrastructure.SystemRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.*;
 
 @Slf4j
 @Service
@@ -36,11 +38,48 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public FileListInfo fileList() {
-        return null;
+        List<Httrack> httrackList = httrackRepository.findAll();
+        List<Crunch> crunchList = crunchRepository.findAll();
+
+        Map<Integer, HttrackFileInfo> httrackMap = new HashMap<>();
+        int httrackCnt = 1;
+        for (Httrack httrack : httrackList) {
+            HttrackFileInfo fileInfo = HttrackFileInfo.builder()
+                    .httrackRegDts(httrack.getRegDts())
+                    .httrackTransUrl(httrack.getTransUrl())
+                    .httrackUrl(httrack.getUrl())
+                    .build();
+            httrackMap.put(httrackCnt++, fileInfo);
+        }
+
+        Map<Integer, CrunchFileInfo> crunchMap = new HashMap<>();
+        int crunchCnt = 1;
+        for (Crunch crunch : crunchList) {
+            CrunchFileInfo fileInfo = CrunchFileInfo.builder()
+                    .crunchMinWord(crunch.getMinWord())
+                    .crunchMaxWord(crunch.getMaxWord())
+                    .crunchWords(crunch.getWords())
+                    .crunchRegDts(crunch.getRegDts())
+                    .crunchLogName(crunch.getLogName())
+                    .build();
+            crunchMap.put(crunchCnt++, fileInfo);
+        }
+        return new FileListInfo(httrackMap, crunchMap);
     }
 
     @Override
-    public LogListInfo logList() {
-        return null;
+    public List<LogListInfo> logList() {
+        List<LogListInfo> logs = new ArrayList<>();
+        nmapRepository.findAll().forEach(nmap ->
+                logs.add(new LogListInfo("nmap", nmap.getLogName(), nmap.getRegDts()))
+        );
+        johnRepository.findAll().forEach(john ->
+                logs.add(new LogListInfo("john", john.getLogName(), john.getRegDts()))
+        );
+        systemRepository.findAll().forEach(system ->
+                logs.add(new LogListInfo("system", system.getLogName(), system.getRegDts()))
+        );
+        Collections.sort(logs);
+        return logs;
     }
 }

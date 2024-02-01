@@ -1,4 +1,4 @@
-package com.securisuite.frontend.web;
+package com.securisuite.frontend.web.dto;
 
 import lombok.Getter;
 import lombok.ToString;
