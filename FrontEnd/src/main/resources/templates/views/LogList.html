@@ -25,7 +25,7 @@
                             <td th:text="${logInfo.type}"></td>
                             <td th:text="${logInfo.regDts}"></td>
                             <td>
-                                <a th:href="'http://172.16.234.132:80/download/logs/' + ${logInfo.logName}"
+                                <a th:href="|http://localhost:16104/download/logs/${logInfo.logName}|"
                                    target="_blank">
                                     <button type="button" class="btn btn-outline-success btn-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"

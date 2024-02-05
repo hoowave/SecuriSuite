@@ -154,4 +154,4 @@
 ```
 * 0% ~ 100%의 값을 전달받을 수 있습니다.
 
-### [<- Architecture & API](../../../../../../../../../../BackEnd/src/main/java/com/securisuite/backend/README.md)
+### [<- Architecture & API](../README.md)

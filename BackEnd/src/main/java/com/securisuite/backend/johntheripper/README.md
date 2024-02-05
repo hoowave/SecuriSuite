@@ -214,4 +214,4 @@ johnOption이 CUSTOM인 경우, customList을 필요로 합니다.
 * 작업이 완료된 경우
 
 
-### [<- Architecture & API](../../../../../../../../../../BackEnd/src/main/java/com/securisuite/backend/README.md)
+### [<- Architecture & API](../README.md)

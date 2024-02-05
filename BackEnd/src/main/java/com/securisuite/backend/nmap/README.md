@@ -99,4 +99,4 @@
 }
 ```
 
-### [<- Architecture & API](../../../../../../../../../../BackEnd/src/main/java/com/securisuite/backend/README.md)
+### [<- Architecture & API](../README.md)

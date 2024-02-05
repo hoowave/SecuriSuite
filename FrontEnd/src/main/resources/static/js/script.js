@@ -1,8 +1,8 @@
 // System IP
-const BASE_IP = '172.16.234.132';
+const BASE_IP = 'localhost';
 const API_BASE_URL = 'http://' + BASE_IP + ':16102/api/v1';
-const LOG_BASE_URL = 'http://' + BASE_IP + ':80/download/logs';
-const FILE_BASE_URL = 'http://' + BASE_IP + ':80/download/files';
+const LOG_BASE_URL = 'http://' + BASE_IP + ':16104/download/logs';
+const FILE_BASE_URL = 'http://' + BASE_IP + ':16104/download/files';
 
 function nmap() {
     let option = $("input[name='option']:checked").val();

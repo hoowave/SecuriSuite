@@ -4,6 +4,7 @@
 ### * [System](system/README.md) : `/api/v1/system`
 ### * [Httrack](httrack/README.md) : `/api/v1/httrack`
 ### * [JohnTheRipper](johntheripper/README.md) `/api/v1/john`
+### * [Report](report/README.md) `/api/v1/report`
 
 ## 데이터 처리 아키텍처
 본 프로젝트는 interfaces, facade, domain, infrastructure의 네 가지 주요 계층으로 구성되어 있으며, 이들 간의 상호 작용을 통해 데이터 처리가 이루어집니다.</br>

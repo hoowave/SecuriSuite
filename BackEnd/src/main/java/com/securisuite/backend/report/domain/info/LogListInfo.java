@@ -24,6 +24,6 @@ public class LogListInfo implements Comparable<LogListInfo>{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         LocalDateTime thisDate = LocalDateTime.parse(this.regDts, formatter);
         LocalDateTime otherDate = LocalDateTime.parse(other.regDts, formatter);
-        return thisDate.compareTo(otherDate);
+        return otherDate.compareTo(thisDate);
     }
 }

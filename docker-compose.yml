@@ -1,0 +1,28 @@
+version: '3'
+services:
+  database:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456s
+      MYSQL_DATABASE: d_securisuite
+    ports:
+      - "16103:3306"
+
+  backend:
+    build:
+      context: ./BackEnd
+      dockerfile: Dockerfile
+    ports:
+      - "16102:16102"
+      - "16104:80"
+    depends_on:
+      - database
+
+  frontend:
+    build:
+      context: ./FrontEnd
+      dockerfile: Dockerfile
+    ports:
+      - "16101:16101"
+    depends_on:
+      - backend

@@ -67,9 +67,9 @@ public class John {
             if ((customList == null || customList.isEmpty())) throw new BaseException("사용자 리스트는 필수입니다.");
             this.customListName = this.regDts + "_" + customList.getOriginalFilename();
             this.customList = customList;
-            transCmd[2] = johnType.getType() + " /var/www/html/upload/" + targetFileName + " > /var/www/html/download/logs/" + hashName + " && " +
-                    "john -w:/var/www/html/upload/" + customListName + " /var/www/html/download/logs/" + hashName + " && " +
-                    "john /var/www/html/download/logs/" + hashName + " --show > /var/www/html/download/logs/" + logName;
+                transCmd[2] = johnType.getType() + " /var/www/html/upload/" + targetFileName + " > /var/www/html/download/logs/" + hashName + " && " +
+                        "john -w:/var/www/html/upload/" + customListName + " /var/www/html/download/logs/" + hashName + " && " +
+                        "john /var/www/html/download/logs/" + hashName + " --show > /var/www/html/download/logs/" + logName;
 
         }
     }

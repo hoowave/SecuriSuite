@@ -3,6 +3,7 @@ package com.securisuite.frontend.web.dto;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -15,8 +16,8 @@ public class FileListResponse {
     @Getter
     @ToString
     public static class Data {
-        private Map<Integer, HttrackFileInfo> httrackFileInfos;
-        Map<Integer, CrunchFileInfo> crunchFileInfos;
+        private List<HttrackFileInfo> httrackFileInfos;
+        private Map<Integer, CrunchFileInfo> crunchFileInfos;
     }
 
     @Getter
@@ -25,6 +26,7 @@ public class FileListResponse {
         private String httrackRegDts;
         private String httrackTransUrl;
         private String httrackUrl;
+        private String httrackType;
     }
 
     @Getter
