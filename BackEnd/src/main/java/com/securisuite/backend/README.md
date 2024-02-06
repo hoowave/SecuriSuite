@@ -21,7 +21,7 @@ Command 객체를 Domain 객체로 변환합니다.</br>
 Domain 계층은 핵심 비즈니스 규칙과 데이터의 무결성을 관리합니다.</br>
 데이터 처리 결과를 Info 객체로 변환합니다.</br>
 Info 객체는 처리된 데이터를 요약하거나 표현하는데 사용됩니다.</br>
-4. Infrastructure 계층(예정)</br>
+4. Infrastructure 계층</br>
 이 프로젝트에서는 Spring Data JPA를 사용하여 MariaDB 데이터베이스와의 상호작용을 관리합니다.
 5. 응답</br>
 처리된 데이터는 최종적으로 DTO(Response) 형태로 변환되어 사용자 또는 요청자에게 응답됩니다.
