@@ -1,6 +1,5 @@
 <div align="center">
-<img src="screenshot/kali.jpg">
-<h1>SecuriSuite</h1>
+<img src="screenshot/logo.jpeg">
 <p>본 프로젝트는 [SecuriSuite]로, SecuriSuite는 브라우저에서 정보 보안 도구를 사용하기 위한 그래픽 인터페이스입니다.</br>
 이 프로젝트는 Kali Linux 도구를 참조로 사용합니다.</p>
 </div>
@@ -135,7 +134,7 @@ API는 예제를 통해 제공됩니다.</br>
 
 * [Architecture & API](BackEnd/src/main/java/com/securisuite/backend/README.md) - 데이터 처리 아키텍처 및 각 API에 대한 완성된 예시입니다. 이
   예시는 실제 프로젝트에서 나온 것입니다.
-* [InterFace](FrontEnd/README.md) - 사용자가 직관적으로 보여질 인터페이스에 대한 문서입니다.
+* [Interface](FrontEnd/README.md) - 사용자가 직관적으로 보여질 인터페이스에 대한 문서입니다.
 
 </details>
 
