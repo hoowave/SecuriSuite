@@ -16,6 +16,7 @@ public class CrunchFileInfo implements Comparable<CrunchFileInfo>{
     private String crunchWords;
     private String crunchRegDts;
     private String crunchLogName;
+    private char crunchComplete;
 
     @Override
     public int compareTo(CrunchFileInfo other) {

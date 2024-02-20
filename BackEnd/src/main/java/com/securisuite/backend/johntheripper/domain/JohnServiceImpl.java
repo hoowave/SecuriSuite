@@ -41,6 +41,9 @@ public class JohnServiceImpl implements JohnService {
 
         if (isHashFile) {
             if (isLogFile) {
+                John john = johnRepository.findByRegDts(initCmd.getRegDts());
+                john.Complete();
+                johnRepository.save(john);
                 complete = true;
                 message = "작업이 완료되었습니다.";
                 log = shellCommandExecutor.getLog(initCmd.getLogName());

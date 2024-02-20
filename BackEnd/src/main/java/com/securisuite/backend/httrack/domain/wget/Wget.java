@@ -27,6 +27,7 @@ public class Wget {
     private String[] transCmd;
     private String regDts;
     private String logName;
+    private char complete;
 
     @Builder
     public Wget(String url) {
@@ -35,6 +36,8 @@ public class Wget {
         this.logName = this.regDts + "_wget.txt";
         this.url = url;
         this.transUrl = regDts + "_" + url.replaceAll("[:/.]+", "_");
+        this.complete = 'N';
+
         transCmd = new String[3];
         transCmd[0] = "/bin/sh";
         transCmd[1] = "-c";
@@ -42,5 +45,9 @@ public class Wget {
                 "wget -P /var/www/html/download/files/" + transUrl + " -m " + url + " > /var/www/html/download/logs/" + logName + " 2>&1 && " +
                 "zip -r /var/www/html/download/files/" + transUrl + ".zip /var/www/html/download/files/" + transUrl + " && " +
                 "rm -rf /var/www/html/download/files/" + transUrl;
+    }
+
+    public void Complete() {
+        this.complete = 'Y';
     }
 }

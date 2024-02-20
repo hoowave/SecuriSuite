@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/BackEnd.main.iml" filepath="$PROJECT_DIR$/.idea/modules/BackEnd.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FrontEnd.main.iml" filepath="$PROJECT_DIR$/.idea/modules/FrontEnd.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/SecuriSuite.iml" filepath="$PROJECT_DIR$/SecuriSuite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.securisuite.BackEnd.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.securisuite.BackEnd.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.securisuite.FrontEnd.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.securisuite.FrontEnd.main.iml" />
     </modules>
   </component>
 </project>

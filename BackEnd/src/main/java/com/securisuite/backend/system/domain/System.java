@@ -26,6 +26,7 @@ public class System {
     private String[] transCmd;
     private String regDts;
     private String logName;
+    private char complete;
 
     @Builder
     public System(String cmd) {
@@ -38,4 +39,9 @@ public class System {
         transCmd[1] = "-c";
         transCmd[2] = cmd;
     }
+
+    public void Complete() {
+        this.complete = 'Y';
+    }
+
 }

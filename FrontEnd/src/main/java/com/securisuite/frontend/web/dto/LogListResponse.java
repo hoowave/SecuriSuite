@@ -11,6 +11,7 @@ public class LogListResponse {
     private String result;
     private Data data;
     private String message;
+    private char complete;
 
     @Getter
     @ToString
@@ -24,5 +25,6 @@ public class LogListResponse {
         private String type;
         private String logName;
         private String regDts;
+        private char complete;
     }
 }

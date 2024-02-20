@@ -28,6 +28,7 @@ public class Httrack {
     private String regDts;
     private String logName;
     private String tempLog;
+    private char complete;
 
     @Builder
     public Httrack(String url) {
@@ -37,6 +38,7 @@ public class Httrack {
         this.tempLog = this.regDts + "_tempLog.txt";
         this.url = url;
         this.transUrl = regDts + "_" + url.replaceAll("[:/.]+", "_");
+        this.complete = 'N';
         transCmd = new String[3];
         transCmd[0] = "/bin/sh";
         transCmd[1] = "-c";
@@ -46,5 +48,9 @@ public class Httrack {
                 "zip -r /var/www/html/download/files/" + transUrl + ".zip /var/www/html/download/files/" + transUrl + " && " +
                 "rm -rf /var/www/html/download/files/" + transUrl +
                 ") > /var/www/html/download/logs/" + tempLog + " 2>&1 &";
+    }
+
+    public void Complete() {
+        this.complete = 'Y';
     }
 }

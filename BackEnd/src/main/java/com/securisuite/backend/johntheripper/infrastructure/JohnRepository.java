@@ -4,4 +4,5 @@ import com.securisuite.backend.johntheripper.domain.John;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface JohnRepository extends JpaRepository<John, Long> {
+    John findByRegDts(String regDts);
 }

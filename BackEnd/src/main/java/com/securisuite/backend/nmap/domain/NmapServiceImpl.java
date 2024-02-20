@@ -18,8 +18,10 @@ public class NmapServiceImpl implements NmapService {
     @Override
     public NmapInfo execute(NmapCmd nmapCmd) {
         var initCmd = nmapCmd.toEntity();
+        nmapRepository.save(initCmd);
         shellCommandExecutor.execute(initCmd.getTransCmd(), initCmd.getLogName());
         String log = shellCommandExecutor.getLog(initCmd.getLogName());
+        initCmd.Complete();
         nmapRepository.save(initCmd);
         return new NmapInfo(initCmd, log);
     }

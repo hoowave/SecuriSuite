@@ -28,12 +28,14 @@ public class Nmap {
     private String[] transCmd;
     private String regDts;
     private String logName;
+    private char complete;
 
     @Builder
     public Nmap(NmapOption option, String ip, String port) {
         SimpleDateFormat format = new SimpleDateFormat("YYYYMMddHHmmss");
         this.regDts = format.format(new Date());
         this.logName = this.regDts + "_nmap.txt";
+        this.complete = 'N';
 
         // 포트 지정 스캔 후 포트를 지정하지 않았을 경우 Exception
         if (option == NmapOption.SET && (port == null || port.isEmpty())) throw new BaseException("포트 지정은 필수입니다.");
@@ -56,5 +58,9 @@ public class Nmap {
             transCmd[1] = option.getOption();
             transCmd[2] = ip;
         }
+    }
+
+    public void Complete() {
+        this.complete = 'Y';
     }
 }

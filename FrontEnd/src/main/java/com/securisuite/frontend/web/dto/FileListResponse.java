@@ -27,6 +27,7 @@ public class FileListResponse {
         private String httrackTransUrl;
         private String httrackUrl;
         private String httrackType;
+        private char httrackComplete;
     }
 
     @Getter
@@ -37,5 +38,6 @@ public class FileListResponse {
         private String crunchWords;
         private String crunchRegDts;
         private String crunchLogName;
+        private char crunchComplete;
     }
 }

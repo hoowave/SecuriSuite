@@ -15,6 +15,7 @@ public class HttrackFileInfo implements Comparable<HttrackFileInfo> {
     private String httrackTransUrl;
     private String httrackUrl;
     private String httrackType;
+    private char httrackComplete;
 
     @Override
     public int compareTo(HttrackFileInfo other) {

@@ -42,6 +42,7 @@ public class John {
     private String hashName;
     private String targetFileName;
     private String customListName;
+    private char complete;
 
     @Builder
     public John(MultipartFile targetFile, JohnOption johnOption, MultipartFile customList) {
@@ -49,6 +50,7 @@ public class John {
         this.regDts = format.format(new Date());
         this.logName = this.regDts + "_johnTheRipper.txt";
         this.hashName = this.regDts + "_hash.txt";
+        this.complete = 'N';
 
         this.targetFile = targetFile;
         this.johnOption = johnOption;
@@ -91,6 +93,10 @@ public class John {
             return JohnType.OFFICE;
         }
         throw new BaseException("지원하지 않는 확장자입니다.");
+    }
+
+    public void Complete() {
+        this.complete = 'Y';
     }
 
 }

@@ -40,6 +40,9 @@ public class HttrackServiceImpl implements HttrackService {
 
         if (isLogFile) {
             if (isZipFile) {
+                Httrack httrack = httrackRepository.findByRegDts(completionCmd.getRegDts());
+                httrack.Complete();
+                httrackRepository.save(httrack);
                 complete = true;
                 message = "작업이 완료되었습니다.";
                 fileManager.deleteLog(initCmd.getTempLog());
@@ -57,7 +60,9 @@ public class HttrackServiceImpl implements HttrackService {
     @Override
     public WgetInfo wget(UrlCmd urlCmd) {
         var initCmd = urlCmd.toWgetEntity();
+        wgetRepository.save(initCmd);
         shellCommandExecutor.execute(initCmd.getTransCmd());
+        initCmd.Complete();
         wgetRepository.save(initCmd);
         return new WgetInfo(initCmd);
     }

@@ -37,7 +37,12 @@ public class CrunchServiceImpl implements CrunchService {
         var progressInfo = new ProgressInfo(initCmd, log);
         // 로그 파일 삭제
         fileManager.deleteLog(initCmd.getOutputProgressName());
-        if (progressInfo.getPercent().equals("100%")) fileManager.deleteLog(initCmd.getOutputLogName());
+        if (progressInfo.getPercent().equals("100%")){
+            fileManager.deleteLog(initCmd.getOutputLogName());
+            Crunch crunch = crunchRepository.findByRegDts(initCmd.getRegDts());
+            crunch.Complete();
+            crunchRepository.save(crunch);
+        }
         return progressInfo;
     }
 }

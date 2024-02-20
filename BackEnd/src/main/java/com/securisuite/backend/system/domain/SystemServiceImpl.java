@@ -25,8 +25,10 @@ public class SystemServiceImpl implements SystemService {
     @Override
     public SystemInfo execute(SystemCmd systemCmd) {
         var initCmd = systemCmd.toEntity();
+        systemRepository.save(initCmd);
         shellCommandExecutor.execute(initCmd.getTransCmd(), initCmd.getLogName());
         String log = shellCommandExecutor.getLog(initCmd.getLogName());
+        initCmd.Complete();
         systemRepository.save(initCmd);
         return new SystemInfo(initCmd, log);
     }

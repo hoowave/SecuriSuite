@@ -53,6 +53,7 @@ public class ReportServiceImpl implements ReportService {
                     .httrackTransUrl(httrack.getTransUrl())
                     .httrackUrl(httrack.getUrl())
                     .httrackType("httrack")
+                    .httrackComplete(httrack.getComplete())
                     .build();
             httrackFileInfoList.add(fileInfo);
         }
@@ -63,6 +64,7 @@ public class ReportServiceImpl implements ReportService {
                     .httrackTransUrl(wget.getTransUrl())
                     .httrackUrl(wget.getUrl())
                     .httrackType("wget")
+                    .httrackComplete(wget.getComplete())
                     .build();
             httrackFileInfoList.add(fileInfo);
         }
@@ -78,6 +80,7 @@ public class ReportServiceImpl implements ReportService {
                     .crunchWords(crunch.getWords())
                     .crunchRegDts(crunch.getRegDts())
                     .crunchLogName(crunch.getLogName())
+                    .crunchComplete(crunch.getComplete())
                     .build();
             crunchMap.put(crunchCnt++, fileInfo);
         }
@@ -88,13 +91,13 @@ public class ReportServiceImpl implements ReportService {
     public List<LogListInfo> logList() {
         List<LogListInfo> logs = new ArrayList<>();
         nmapRepository.findAll().forEach(nmap ->
-                logs.add(new LogListInfo("nmap", nmap.getLogName(), nmap.getRegDts()))
+                logs.add(new LogListInfo("nmap", nmap.getLogName(), nmap.getRegDts(), nmap.getComplete()))
         );
         johnRepository.findAll().forEach(john ->
-                logs.add(new LogListInfo("john", john.getLogName(), john.getRegDts()))
+                logs.add(new LogListInfo("john", john.getLogName(), john.getRegDts(), john.getComplete()))
         );
         systemRepository.findAll().forEach(system ->
-                logs.add(new LogListInfo("system", system.getLogName(), system.getRegDts()))
+                logs.add(new LogListInfo("system", system.getLogName(), system.getRegDts(), system.getComplete()))
         );
         Collections.sort(logs);
         return logs;

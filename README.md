@@ -146,6 +146,13 @@ API는 예제를 통해 제공됩니다.</br>
 ### [자세히](UPDATE.md)
 
 <details>
+<summary>2024-02-20</summary>
+
+1. 결과 파일 및 로그 파일 다운로드 기능 개선
+
+</details>
+
+<details>
 <summary>2024-02-05</summary>
 
 1. Docker를 사용한 배포 및 프로젝트 실행

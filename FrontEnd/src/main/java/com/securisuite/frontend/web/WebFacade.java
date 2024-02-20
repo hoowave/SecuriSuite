@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import static com.securisuite.frontend.config.PathConfig.API_BASE_URL;
+
 
 @Slf4j
 @Service
@@ -16,22 +18,22 @@ public class WebFacade {
     private final RestTemplate restTemplate;
 
     public Object getDashBoard() {
-        String url = "http://host.docker.internal:16102/api/v1/report/dashboard";
+        String url = API_BASE_URL + "report/dashboard";
         DashBoardResponse dashBoardResponse = restTemplate.postForObject(url, null, DashBoardResponse.class);
         var response = dashBoardResponse.getData().getCounts();
         return response;
     }
 
-    public Object getFileList(){
-        String url = "http://host.docker.internal:16102/api/v1/report/files";
+    public Object getFileList() {
+        String url = API_BASE_URL + "report/files";
         FileListResponse fileListResponse = restTemplate.postForObject(url, null, FileListResponse.class);
         var response = fileListResponse.getData();
         return response;
     }
 
-    public Object getLogList(){
-        String url = "http://host.docker.internal:16102/api/v1/report/logs";
-        LogListResponse logListResponse = restTemplate.postForObject(url,null, LogListResponse.class);
+    public Object getLogList() {
+        String url = API_BASE_URL + "report/logs";
+        LogListResponse logListResponse = restTemplate.postForObject(url, null, LogListResponse.class);
         var response = logListResponse.getData();
         return response;
     }

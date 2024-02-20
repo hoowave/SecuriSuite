@@ -35,6 +35,7 @@ public class Crunch {
     private String regDts;
     private String logName;
     private String outputLogName;
+    private char complete;
 
     @Builder
     public Crunch(int minWord, int maxWord, String words) {
@@ -45,9 +46,14 @@ public class Crunch {
         this.maxWord = maxWord;
         this.words = words;
         this.outputLogName = this.regDts + "_crunch_output.txt";
+        this.complete = 'N';
         transCmd = new String[3];
         transCmd[0] = "/bin/sh";
         transCmd[1] = "-c";
         transCmd[2] = "crunch " + minWord + " " + maxWord + " " + words + " -o " + "/var/www/html/download/files/" + this.logName + " > /var/www/html/download/logs/" + this.outputLogName + " 2>&1 &";
+    }
+
+    public void Complete() {
+        this.complete = 'Y';
     }
 }

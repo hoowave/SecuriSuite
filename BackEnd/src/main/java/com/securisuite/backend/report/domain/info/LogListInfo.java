@@ -12,11 +12,13 @@ public class LogListInfo implements Comparable<LogListInfo>{
     private String type;
     private String logName;
     private String regDts;
+    private char complete;
 
-    public LogListInfo(String type, String logName, String regDts) {
+    public LogListInfo(String type, String logName, String regDts, char complete) {
         this.type = type;
         this.logName = logName;
         this.regDts = regDts;
+        this.complete = complete;
     }
 
     @Override
